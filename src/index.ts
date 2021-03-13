@@ -1,4 +1,4 @@
-import * as CryptoJS from crypto - js;
+import * as CryptoJS from "crypto-js";
 
 class Block {
     static calculateBlockHash = (
@@ -43,7 +43,7 @@ let blockchain: Block[] = [genesisBlock];
 
 const getBlockchain = (): Block[] => blockchain;
 
-const getLatestBlock = (): Block[] => blockchain[blockchain.length - 1];
+const getLatestBlock = (): Block => blockchain[blockchain.length - 1];
 
 const getNewTimeStamp = (): number => Math.round(new Date().getTime() / 1000);
 
@@ -68,26 +68,38 @@ const createNewBlock = (data: string): Block => {
     return newBlock;
 };
 
-const getHashforBlock = (aBlock: Block) : string => Block.calculateBlockHash(aBlock.index, aBlock.previousHash, aBlock.timestamp, aBlock.data);
+const getHashforBlock = (aBlock: Block): string =>
+    Block.calculateBlockHash(
+        aBlock.index,
+        aBlock.previousHash,
+        aBlock.timestamp,
+        aBlock.data
+    );
 
 const isBlockValid = (candidateBlock: Block, previousBlock: Block): boolean => {
-    if (Block.validateStructure(candidateBlock)) {
+    if (!Block.validateStructure(candidateBlock)) {
         return false;
-    } else if(previousBlock.index + 1 !== candidateBlock.index){
+    } else if (previousBlock.index + 1 !== candidateBlock.index) {
         return false;
-    } else if(previousBlock.hash !== candidateBlock.previousHash) {
+    } else if (previousBlock.hash !== candidateBlock.previousHash) {
         return false;
-    } else if(getHashforBlock(candidateBlock) !== candidateBlock.hash) {
+    } else if (getHashforBlock(candidateBlock) !== candidateBlock.hash) {
         return false;
     } else {
         return true;
     }
 };
 
-const addBlock = (candidateBlock: Block) => : void => {
-    if(isBlockValid(candidateBlock, getLatestBlock())) {
+const addBlock = (candidateBlock: Block): void => {
+    if (isBlockValid(candidateBlock, getLatestBlock())) {
         blockchain.push(candidateBlock);
     }
-}
+};
+
+createNewBlock("second block");
+createNewBlock("third block");
+createNewBlock("fourth block");
+
+console.log(blockchain);
 
 export {};
