@@ -1,12 +1,21 @@
-const name = "Lemma",
-    race = "midlander",
-    job = "black mage",
-    level = 80;
-
-const sayHi = (name: string, race: string, job: string, level:number): void => {
-    console.log(`Hello ${name}, you are ${level} level ${job}, you are a ${race} `);
+interface Human {
+    name:string;
+    age:number;
+    gender:string;
 }
 
-sayHi(name, race, job, level);
+
+const person = {
+    name: "lemma",
+    age: 22,
+    gender: "female"
+}
+
+const sayHi = (person: Human) => {
+    return `Hello ${person.name}, you are ${person.gender}, you are a ${person.age} `;
+}
+
+console.log(sayHi(person));
+
 
 export {};
