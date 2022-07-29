@@ -28,3 +28,30 @@ https://huchu.link/ 이동하여 URL 을 단축하세요.
 ## 강의 노트
 
 -   오버로딩은 여러 call signature가 있는 함수
+
+## Solution
+
+```jsx
+// Last
+
+type Last = <T>(items: T[]) => T;
+
+const last: Last = (items) => items[items.length - 1];
+
+const lastItem = last([1, 2, 3, 4, 5]);
+
+console.log(lastItem);
+
+// Prepend
+
+type Prepend = <T>(items: T[], item: T) => T[];
+
+const prepend: Prepend = (items, item) => [item, ...items];
+
+const items = [1, 2, 3, 4, 5];
+
+const newItems = prepend(items, 0);
+
+console.log(newItems);
+v;
+```
