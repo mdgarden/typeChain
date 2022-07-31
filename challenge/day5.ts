@@ -43,8 +43,10 @@ class Dict {
 
     // dictionary의 단어를 모두 프린트함
     public showAll() {
-        this.dict.map(console.log);
-        return;
+        const printWord = (item: Word) => {
+            console.log(item);
+        };
+        this.dict.forEach(printWord);
     }
 
     // dict 단어들의 총 count를 리턴함
