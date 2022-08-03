@@ -51,7 +51,8 @@ class Dict {
 
     // dict 단어들의 총 count를 리턴함
     public count(): number {
-        return this.dict.length;
+        const dictLength = this.dict.length;
+        return dictLength;
     }
 }
 
